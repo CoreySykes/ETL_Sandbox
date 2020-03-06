@@ -25,14 +25,14 @@ python init/000_Log_Table_Creation_ddl.py
 
 ```
 cd main/
-nohup sh 100_Execute_Log_Generator.sh --number_of_iterations=[number] &
+nohup sh 100_Execute_Log_Generator.sh --number_of_iterations=[number]  --number_of_lines=[number] &
 ```
 
-e.g. This will create rows of data every few seconds for 100 iterations.
+e.g. This will create 1000 rows of data every 10 seconds for 100 iterations for a total of 10,000 records.
 
 ```
 cd main/
-nohup sh 100_Execute_Log_Generator.sh --number_of_iterations=100 &
+nohup sh 100_Execute_Log_Generator.sh --number_of_iterations=100 --number_of_lines=100 &
 ```
 
 3. Start the python script to open the stream (in the background)
