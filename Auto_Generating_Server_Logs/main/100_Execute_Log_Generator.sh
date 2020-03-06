@@ -21,6 +21,7 @@ ETLLogFile=$LOG_DIR/$job_name.log.`date +%Y%m%d%H%M%S`
 for arg; do
     case $arg in
         '--number_of_iterations='*) number_of_iterations=${arg#*=} ;;
+        '--number_of_lines='*) number_of_lines=${arg#*=} ;;
     esac
 done
 
@@ -36,13 +37,18 @@ if ! [[ $number_of_iterations =~ $re ]]; then
     exit 1
 fi
 
+if ! [[ $number_of_lines =~ $re ]]; then
+    echo "Number of Lines is not a number. Exiting the process." >> $ETLLogFile
+    exit 1
+fi
+
 # Go ahead and execute the iteration and generate the logs
 while [[ ${number_of_iterations} -gt 0 ]]
 do
-    python 100_Log_Generator.py -n 5 -o LOG -df yes >> $ETLLogFile 2>&1
+    python 100_Log_Generator.py -n ${number_of_lines} -o LOG -df yes >> $ETLLogFile 2>&1
     echo "Generating logs at a 3 second interval." >> $ETLLogFile
     number_of_iterations=$(( ${number_of_iterations} - 1 ))
-    sleep 3
+    sleep 10
 done
 
 # Check the exit status of the runs. If there's an issue, exit 1, otherwise success 
