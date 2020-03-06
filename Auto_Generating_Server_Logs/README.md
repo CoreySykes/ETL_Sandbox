@@ -36,3 +36,5 @@ nohup sh 100_Execute_Log_Generator.sh --number_of_iterations=100 &
 ```
 
 3. Open up your MySQL db to see the data streaming in. Normally it's located here: http://localhost/phpmyadmin/
+
+<img src="https://i.imgur.com/53HZDq8.png" style="width:50%;height=50%"></img>
