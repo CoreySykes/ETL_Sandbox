@@ -21,7 +21,7 @@ Assuming you have these tools, you can clone the repository down and run the fol
 python init/000_Log_Table_Creation_ddl.py
 ```
 
-2. Run the below code snippet to begin generating logs
+2. Run the below code snippet to begin generating logs in the background
 
 ```
 cd main/
@@ -35,6 +35,12 @@ cd main/
 nohup sh 100_Execute_Log_Generator.sh --number_of_iterations=100 &
 ```
 
-3. Open up your MySQL db to see the data streaming in. Normally it's located here: http://localhost/phpmyadmin/
+3. Start the python script to open the stream (in the background)
+
+```
+nohup python 200_Stream_Log_Processing.py &
+```
+
+4. Open up your MySQL db to see the data streaming in. Normally it's located here: http://localhost/phpmyadmin/
 
 <img src="https://i.imgur.com/53HZDq8.png" style="width:50%;height=50%"></img>
